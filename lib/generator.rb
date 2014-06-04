@@ -14,15 +14,18 @@ class Generator
   end
 
   def companies
+    companies = []
     (@length / 2).times.map do
-      Faker::Company.name
+      companies << Faker::Company.name
     end
+    companies
   end
 
   def generate
+    these_companies = companies
     i = 0
     people.map do |person|
-      result = (person << companies[i])
+      result = (person << these_companies[i])
       i += 1
       i = 0 if i == (@length / 2)
       result
